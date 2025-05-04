@@ -1,0 +1,59 @@
+baseurl = "https://andrewsonin.github.io"
+languageCode = "en-us"
+title = "Andrew Sonin – Personal Website"
+theme = "hugo-xmin"
+googleAnalytics = "G-R9374K3FFD"
+ignoreFiles = [ "_cache$" ]
+canonifyURLs = true
+footnotereturnlinkcontents = "↩"
+
+[permalinks]
+blog = "/blog/:year/:month/:day/:slug/"
+
+[[menu.main]]
+name = "Home"
+url = ""
+weight = 1
+
+[[menu.main]]
+name = "Blog"
+url = "/blog/"
+weight = 2
+
+[[menu.main]]
+name = "Categories"
+url = "categories/"
+weight = 3
+
+[[menu.main]]
+name = "Tags"
+url = "tags/"
+weight = 4
+
+[[menu.main]]
+name = "Subscribe"
+url = "index.xml"
+
+[params]
+description = "Personal website of Andrew Sonin."
+footer = "&copy; Andrew Sonin 2025 -- {Year} | [GitHub](https://github.com/andrewsonin) | [Telegram](https://t.me/sonin)"
+[params.urls]
+gravatar = "https://gravatar.com/avatar/5838c16fa65bbc16b5eedc94e9369d7d?s=800"
+github = "https://github.com/andrewsonin"
+
+[markup.highlight]
+codeFences = false
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.goldmark.extensions.passthrough]
+enable = true
+
+  [markup.goldmark.extensions.passthrough.delimiters]
+  block = [ [ "\\[", "\\]" ], [ "$$", "$$" ] ]
+  inline = [ [ "\\(", "\\)" ] ]
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'

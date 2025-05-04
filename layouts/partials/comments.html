@@ -1,0 +1,19 @@
+{{ if and (and .Params.type (eq .Params.type "article")) (not .Params.disable_comments) }}
+<div id="comments">
+    <script src="https://giscus.app/client.js"
+            data-repo="andrewsonin/andrewsonin.github.io"
+            data-repo-id="R_kgDOOkdj1w"
+            data-category="Comments"
+            data-category-id="DIC_kwDOOkdj184CpxP2"
+            data-mapping="pathname"
+            data-strict="1"
+            data-reactions-enabled="0"
+            data-emit-metadata="1"
+            data-input-position="top"
+            data-theme="preferred_color_scheme"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+    </script>
+</div>
+{{ end }}

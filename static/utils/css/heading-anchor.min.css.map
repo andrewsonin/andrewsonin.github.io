@@ -1,0 +1,1 @@
+{"version":3,"mappings":"AAAA,QACE,6BACA","sources":["heading-anchor.css"],"sourcesContent":[".anchor {\n  &:not(:hover > *) { display: none; }\n  & > a::before { content: \"#\"; }\n}\n"],"names":[]}

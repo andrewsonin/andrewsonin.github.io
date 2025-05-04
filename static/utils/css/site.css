@@ -1,0 +1,32 @@
+nav > p:last-child {
+  border-bottom: 1px dashed #666;
+}
+footer {
+  border-top: 1px dashed #666;
+  margin-top: 2em;
+  .flex-col {
+    gap: 2em;
+  }
+}
+nav a, footer a {
+  text-decoration: none;
+}
+nav a {
+  display: inline-block;
+  background: white;
+  padding: .2em .5em;
+  margin-right: .5em;
+}
+nav a:hover {
+  filter: invert(1);
+}
+.body, .frontmatter, .body ~ .appendix {
+  box-shadow: none;
+  margin-top: auto;
+}
+.frontmatter {
+  background: linear-gradient(0, white, aliceblue);
+}
+.body ~ .appendix {
+  background: linear-gradient(0, whitesmoke, white);
+}

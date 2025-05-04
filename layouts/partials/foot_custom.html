@@ -1,0 +1,39 @@
+<!--LaTeX rendering-->
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/utils/js/math-code.min.js" defer></script>
+<script src="/katex/katex.min.js" defer></script>
+<script src="/katex/contrib/auto-render.min.js" defer></script>
+<script src="/utils/js/render-katex.min.js" defer></script>
+<script src="/utils/js/center-img.min.js" defer></script>
+
+<!--Syntax highlighting-->
+<script src="/js/highlight.min.js"></script>
+<script>
+    const lightTheme = "/css/github.css";
+    const darkTheme  = "/css/github-dark.css";
+
+    const themeLink = document.getElementById('hljs-theme');
+
+    function setHighlightTheme(isDark) {
+        themeLink.href = isDark ? darkTheme : lightTheme;
+
+        themeLink.onload = () => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+        };
+    }
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    setHighlightTheme(prefersDark.matches);
+
+    prefersDark.addEventListener('change', (e) => {
+        setHighlightTheme(e.matches);
+    });
+
+    hljs.configure({languages: []});
+    hljs.highlightAll();
+</script>
+
+{{ template "_internal/google_analytics.html" . }}
+{{ partial "comments.html" . }}

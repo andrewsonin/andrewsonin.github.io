@@ -1,0 +1,173 @@
+:root {
+  --side-width: 200px;
+  --side-gap: 2em;
+  --side-margin: calc(0px - var(--side-width) - var(--side-gap));
+}
+body, blockquote, .side { background: #fafafa; }
+.body, .body ~ .appendix, .frontmatter, .fullwidth, .embed-left, .embed-right {
+  margin-top: 2em;
+  padding: 1em;
+  box-shadow: 0 0 8px #ccc;
+  background: #fff;
+}
+.appendix, .footnotes, .body .side { font-size: .9em; }
+.body ~ .appendix, .frontmatter { background: none; }
+.appendix h2 { border-bottom: 1px dashed #666; }
+#TOC { top: 0; }
+.bg-number {
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: lightslategray;
+  color: #fff;
+}
+
+/* left/right elements*/
+.side {
+  width: var(--side-width);
+  margin: 0 auto;
+}
+.side-left {
+  float: left;
+  clear: left;
+  margin-left: var(--side-margin);
+  &:not(.body > *) {
+    margin-left: calc(var(--side-margin) + 1em);
+  }
+  position: sticky;
+}
+.side-right {
+  float: right;
+  clear: right;
+  margin-right: var(--side-margin);
+}
+.quote-left, .quote-right { width: 45%; }
+.embed-left, .embed-right {
+  margin-top: auto;
+  padding: 0;
+}
+.quote-left, .embed-left {
+  float: left;
+  margin-right: 1em;
+}
+.quote-right, .embed-right {
+  float: right;
+  margin-left: 1em;
+}
+.embed-left { margin-left: var(--side-margin); }
+.embed-right { margin-right: var(--side-margin); }
+:is(.side, .embed-left, .embed-right) > :first-child { margin-top: 0; }
+:is(.embed-left, .embed-right) > :last-child { margin-bottom: 0; }
+:is(.quote-left, .quote-right) {
+  & > :first-child { padding-top: .1px; }
+  & > :last-child { padding-bottom: .1px; }
+}
+
+/* wide elements */
+.fullwidth {
+  max-width: calc(100vw - 2em);
+  margin: 1em 0 1em 50%;
+  & * {
+    max-width: calc(100vw - 4em);
+    margin: auto 0;
+  }
+  transform: translateX(-50%);
+  float: left;
+  min-width: 100%;
+  background: #fff;
+  & :is(figcaption, .caption) {
+    margin-left: calc(50% - 400px);
+    width: 800px;
+    padding: 1em 1em 0;
+  }
+}
+.fullscroll {
+  & * { max-width: initial; }
+  &, & figure, & .figure { overflow-x: auto; }
+}
+
+@media (min-width: 1264.02px) {
+  #TOC.side {
+    .active {
+      color: limegreen;
+    }
+    li li .active {
+      border-left: 3px solid;
+      margin-left: calc(-1em - 3px);
+      padding-left: 1em;
+    }
+    &:has(.active) li:not(:has(.active)) ul {
+      display: none;
+    }
+  }
+  .note-ref { cursor: pointer; }
+  .note-ref:hover + .side {
+    display: inline-block;
+    background: #f8f8f8;
+    position: absolute;
+    z-index: 1;
+    margin-left: 1em;
+    padding: .5em;
+    box-sizing: content-box;
+  }
+}
+@media (max-width: 1264px) {
+  body:not(.pagesjs) {
+    #TOC {
+      border: 1px solid #eee;
+      border-radius: 5px;
+      padding: 1em;
+      position: initial;
+      float: none;
+      columns: 2;
+    }
+    .side { width: 100%; }
+    :is(main, .body) .side {
+      padding: 0 2em;
+      color: darkslategray;
+    }
+    .side-left, .side-right {
+      clear: both;
+      margin: 1em auto;
+      background: none;
+    }
+    :not(.note-ref) + .side { float: none; }
+    .footnote-ref + .footnotes { float: left; }
+    .side > :last-child { margin-bottom: 0; }
+    .embed-left, .embed-right {
+      float: inherit;
+      margin: auto;
+      padding: 1em;
+    }
+  }
+}
+@media (max-width: 800px) {
+  body:not(.pagesjs) {
+    padding: initial;
+    main, .body { padding: 0 .5em 0; }
+    #TOC { columns: 1; }
+    .quote-left, .quote-right {
+      width: inherit;
+      float: inherit;
+      margin: auto;
+    }
+    .fullwidth {
+      margin: initial;
+      transform: initial;
+      float: none;
+      min-width: initial;
+      background: none;
+      border: none;
+      & :is(figcaption, .caption) {
+        margin: initial;
+        padding: initial;
+      }
+      &:not(.fullscroll) * { max-width: 100%; }
+    }
+  }
+}
+
+@media print {
+  body {
+    background: none;
+  }
+}

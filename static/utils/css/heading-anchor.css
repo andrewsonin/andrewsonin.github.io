@@ -1,0 +1,4 @@
+.anchor {
+  &:not(:hover > *) { display: none; }
+  & > a::before { content: "#"; }
+}

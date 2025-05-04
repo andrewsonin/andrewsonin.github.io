@@ -1,0 +1,77 @@
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1f1f1f;
+        color: #e0e0e0;
+    }
+
+    header, footer {
+        background-color: #1f1f1f;
+        color: #e0e0e0;
+    }
+
+    .article-meta, .menu a {
+        background: #4a3838;
+    }
+
+    a {
+        color: #64b5f6;
+    }
+
+    a:hover {
+        color: #90caf9;
+    }
+
+    /* Main content */
+    .main, #content, .post {
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+    }
+
+    /* Buttons */
+    button,
+    input[type="submit"],
+    .btn {
+        background-color: #2a2a2a;
+        color: #e0e0e0;
+        border: 1px solid #444;
+    }
+
+    button:hover,
+    input[type="submit"]:hover,
+    .btn:hover {
+        background-color: #3a3a3a;
+        border-color: #666;
+    }
+
+    /* Code */
+    code, pre {
+        background-color: #272727;
+        color: #cfcfcf;
+    }
+
+    /* Quotes */
+    blockquote {
+        background: #272727;
+        border-left: 4px solid #555;
+        color: #e0e0e0;
+    }
+
+    /* Horizontal line */
+    hr {
+        border-color: #444;
+    }
+
+    /* Tables */
+    table {
+        background-color: #1e1e1e;
+        color: #e0e0e0;
+    }
+
+    th {
+        background-color: #2a2a2a;
+    }
+
+    tr:nth-child(even) {
+        background-color: #242424;
+    }
+}

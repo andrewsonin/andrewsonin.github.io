@@ -1,0 +1,49 @@
+{{ with .Title }}
+<meta property="og:title" content="{{ . }}">
+{{ end }}
+{{ with .Params.description }}
+<meta property="og:description" content="{{ . }}">
+{{ else }}
+<meta property="og:description" content="{{ .Summary }}">
+{{ end }}
+
+{{ if and (.Params.type) (eq .Params.type "article") }}
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+    <meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+
+    <meta property="twitter:card" content="summary_large_image">
+
+    {{ $author := "" }}
+    {{ if .Params.author }}
+        {{ $author = .Params.author }}
+    {{ else }}
+        {{ $author = "Andrew Sonin" }}
+    {{ end }}
+    {{ range .Params.tags }}
+        <meta property="article:tag" content="{{ . }}">
+    {{ end }}
+    {{ range .Params.categories }}
+        <meta property="article:section" content="{{ . }}">
+    {{ end }}
+    {{ $first_alias := index .Params.aliases 0 }}
+    {{ $first_alias = $first_alias | absURL }}
+    {{ $first_alias = replace (replace $first_alias "https://" "") "http://" "" }}
+    {{ if not $first_alias }}
+        {{ errorf "first_alias appeared to be empty for %s" .File.Path }}
+    {{ end }}
+    <meta property="og:image" content="https://dynamic-og-image-generator.vercel.app/api/generate?title={{ .Title }}&author={{ $author }}&avatar={{ .Site.Params.urls.gravatar }}&websiteUrl={{ $first_alias }}&theme=default" />
+    <meta property="og:image:alt" content="Article Card" />
+{{ else }}
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="{{ "/favicon.png" | absURL }}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <meta property="og:image:alt" content="Website Logo" />
+{{ end }}
+
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:logo" content="{{ "/favicon.svg" | absURL }}">
+<meta property="og:site_name" content="{{ .Site.Title }}" />

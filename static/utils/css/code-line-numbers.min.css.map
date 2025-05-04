@@ -1,0 +1,1 @@
+{"version":3,"mappings":"AAAA","sources":["code-line-numbers.css"],"sourcesContent":["span[data-line-number]::before {\n  content: attr(data-line-number);\n  padding-right: .5em;\n  margin-right: 1em;\n  display: inline-block;\n  border-right: solid 1px;\n  color: #ccc;\n}\n"],"names":[]}

@@ -5,14 +5,14 @@
         <description>{{ .Site.Params.description }}</description>
         <generator>Hugo</generator>
         <language>{{ .Site.LanguageCode }}</language>
-        <lastBuildDate>{{ now.UTC.Format "2006-01-02 15:04:05 UTC" }}</lastBuildDate>
+        <lastBuildTimestamp>{{ now.UTC.Format "2006-01-02 15:04:05 UTC" }}</lastBuildTimestamp>
         <atom:link href="{{ urls.JoinPath .Site.BaseURL "index.xml"}}" rel="self" type="application/rss+xml"/>
         {{ range .Site.RegularPages }}
         <item>
             <title>{{ .Title }}</title>
             <link>{{ .Permalink }}</link>
             <guid>{{ .Permalink }}</guid>
-            <pubDate>{{ .Date.UTC.Format "Mon, 02 Jan 2006 UTC" }}</pubDate>
+            <pubDate>{{ .Date.UTC.Format "2006-01-02 UTC" }}</pubDate>
             <description>{{ with .Params.description }}{{ . | html }}{{ else }}{{ .Summary | html }}{{ end }}</description>
         </item>
         {{ end }}

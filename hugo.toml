@@ -11,7 +11,7 @@ footnotereturnlinkcontents = "↩"
 blog = "/blog/:year/:month/:day/:slug/"
 
 [[menu.main]]
-name = "Home"
+name = "About"
 url = ""
 weight = 1
 
@@ -35,7 +35,7 @@ name = "Subscribe"
 url = "index.xml"
 
 [params]
-description = "Personal website of Andrew Sonin."
+description = "Personal website of Andrew Sonin"
 footer = "&copy; Andrew Sonin 2025 -- {Year} | [GitHub](https://github.com/andrewsonin) | [Telegram](https://t.me/sonin)"
 [params.urls]
 gravatar = "https://gravatar.com/avatar/5838c16fa65bbc16b5eedc94e9369d7d?s=800"

@@ -3,7 +3,6 @@
         <title>{{ .Site.Title }}</title>
         <link>{{ .Site.BaseURL }}</link>
         <description>{{ .Site.Params.description }}</description>
-        <generator>Hugo</generator>
         <language>{{ .Site.LanguageCode }}</language>
         <lastBuildTimestamp>{{ now.UTC.Format "2006-01-02 15:04:05 UTC" }}</lastBuildTimestamp>
         <atom:link href="{{ urls.JoinPath .Site.BaseURL "index.xml"}}" rel="self" type="application/rss+xml"/>

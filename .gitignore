@@ -6,3 +6,6 @@ __pycache__
 .python-version
 /poetry.lock
 /pyproject.toml
+
+/static/avatar.jpg
+/static/previews/

@@ -33,7 +33,7 @@ def main(*, content: str, static: str, logo: str, hugo: str):
         site_config = load_toml(f)
 
     base_url = site_config['baseurl']
-    avatar_url = site_config['params']['urls']['gravatar']
+    avatar_path = static_dir / site_config['params']['staticPaths']['avatar']
 
     previews_dir = static_dir / 'previews'
 
@@ -60,7 +60,7 @@ def main(*, content: str, static: str, logo: str, hugo: str):
         )
         print(f'Article path found: {md_file}')
 
-    generate_og_images(*articles, avatar_url=avatar_url, logo_path=logo)
+    generate_og_images(*articles, avatar_path=avatar_path, logo_path=logo)
 
 
 if __name__ == '__main__':

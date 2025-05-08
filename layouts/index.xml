@@ -7,6 +7,7 @@
         <lastBuildTimestamp>{{ now.UTC.Format "2006-01-02 15:04:05 UTC" }}</lastBuildTimestamp>
         <atom:link href="{{ urls.JoinPath .Site.BaseURL "index.xml"}}" rel="self" type="application/rss+xml"/>
         {{ range .Site.RegularPages }}
+        {{ if or (not .Params.type) (not (eq .Params.type "alias")) }}
         <item>
             <title>{{ .Title }}</title>
             <link>{{ .Permalink }}</link>
@@ -14,6 +15,7 @@
             <pubDate>{{ .Date.UTC.Format "2006-01-02 UTC" }}</pubDate>
             <description>{{ with .Params.description }}{{ . | html }}{{ else }}{{ .Summary | html }}{{ end }}</description>
         </item>
+        {{ end }}
         {{ end }}
     </channel>
 </rss>

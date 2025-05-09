@@ -10,7 +10,7 @@ body {
 .menu li { display: inline-block; }
 .article-meta, .menu a {
   text-decoration: none;
-  background: #eee;
+  background: #e0e0e0;
   padding: 5px;
   border-radius: 5px;
   margin-right: 10px;
@@ -26,18 +26,19 @@ hr {
 /* code */
 pre {
   border: 1px solid #ddd;
-  box-shadow: 5px 5px 5px #eee;
+  box-shadow: 5px 5px 5px #e0e0e0;
   padding: 1em;
   overflow-x: auto;
+  background: #ffffff;
 }
-code { background: #f9f9f9; }
+code { background: #f0f0f0; }
 pre code { background: none; }
 
 /* misc elements */
 img, iframe, video { max-width: 100%; }
 main { hyphens: auto; }
 blockquote {
-  background: #f9f9f9;
+  background: #f0f0f0;
   border-left: 5px solid #ccc;
   padding: 3px 1em 3px;
 }
@@ -49,4 +50,4 @@ table {
 }
 table thead th { border-bottom: 1px solid #ddd; }
 th, td { padding: 5px; }
-thead, tfoot, tr:nth-child(even) { background: #eee; }
+thead, tfoot, tr:nth-child(even) { background: #e0e0e0; }

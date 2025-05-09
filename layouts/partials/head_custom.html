@@ -1,6 +1,7 @@
-<link rel="stylesheet" href="/css/style.css">
 {{ if or (not .Params.type) (or (eq .Params.type "blog") (eq .Params.type "categories") (eq .Params.type "tags")) }}
 <link rel="stylesheet" href="/css/background_logo.css">
+{{ else }}
+<link rel="stylesheet" href="/css/background_color.css">
 {{ end }}
 <!--Favicon-->
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">

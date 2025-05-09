@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python
 import argparse
 from pathlib import Path
 from tomllib import load as load_toml

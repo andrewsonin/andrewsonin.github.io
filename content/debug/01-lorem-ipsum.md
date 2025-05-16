@@ -2,7 +2,7 @@
 title: Lorem Ipsum
 description: Testing article
 type: article
-date: '2025-05-03'
+date: 2025-05-03
 categories:
   - Debug
 tags:

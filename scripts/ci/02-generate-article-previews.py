@@ -54,7 +54,7 @@ def main(*, content: str, static: str, logo: str, hugo: str):
                 title=front_matter['title'],
                 description=front_matter['description'],
                 author=front_matter.get('author', 'Andrew Sonin'),
-                url=join_url(base_url, front_matter['alias']).removeprefix('https://'),
+                url=join_url(base_url, front_matter['alias']).removeprefix('https://').removesuffix('.md'),
                 output_path=join_path(output_dir, f'{name}.png')
             )
         )

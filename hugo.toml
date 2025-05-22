@@ -7,6 +7,9 @@ ignoreFiles = [ "_cache$" ]
 canonifyURLs = true
 footnotereturnlinkcontents = "↩"
 
+[permalinks]
+blog = "/blog/:slug"
+
 [[menu.main]]
 name = "About"
 url = ""

@@ -10,7 +10,7 @@ tags:
   - Convex Optimization
   - Lagrange Multipliers
   - Karush–Kuhn–Tucker Conditions
-alias: /blog/from-discrete-to-smooth.md
+slug: from-discrete-to-smooth
 ---
 
 Many real-world tasks can be posed as optimization problems — from resource allocation to machine learning, signal processing, or operations research. The general form is:

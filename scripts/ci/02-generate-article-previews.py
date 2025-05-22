@@ -49,13 +49,14 @@ def main(*, content: str, static: str, logo: str, hugo: str):
 
         output_dir = join_path(previews_dir, parent)
         makedirs(output_dir, exist_ok=True)
+        slug = front_matter['slug']
         articles.append(
             ArticleInfo(
                 title=front_matter['title'],
                 description=front_matter['description'],
                 author=front_matter.get('author', 'Andrew Sonin'),
-                url=join_url(base_url, front_matter['alias']).removeprefix('https://').removesuffix('.md'),
-                output_path=join_path(output_dir, f'{name}.png')
+                url=join_url(base_url, str(parent / slug)).removeprefix('https://').removesuffix('/'),
+                output_path=join_path(output_dir, f'{slug}.png')
             )
         )
         print(f'Article path found: {md_file}')

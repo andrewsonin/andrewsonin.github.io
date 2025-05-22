@@ -5,7 +5,7 @@
 <ul class="terms">
     {{ range sort .Pages "Title" }}
     <li>
-        <a href="{{ .RelPermalink }}" rel="tag">{{ .Title }}</a> ({{ len .Pages }})
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a> ({{ len .Pages }})
     </li>
     {{ end }}
 </ul>

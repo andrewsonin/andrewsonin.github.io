@@ -6,6 +6,19 @@
         <a href="mailto:{{ $author.mail }}" class="author" rel="author nofollow">{{ $author.name }}</a>
     </address>
     <time class="h2" datetime="{{ .Date.Format "2006-01-02" }}" itemprop="datePublished">{{ .Date.Format "2006/01/02" }}</time>
+
+    <nav style="display: flex; justify-content: space-between;">
+        <div>
+            {{ with .PrevInSection }}
+            <a href="{{ .RelPermalink }}" rel="prev">← {{ .Title }}</a>
+            {{ end }}
+        </div>
+        <div style="text-align: right;">
+            {{ with .NextInSection }}
+            <a href="{{ .RelPermalink }}" rel="next">{{ .Title }} →</a>
+            {{ end }}
+        </div>
+    </nav>
 </div>
 
 <main>

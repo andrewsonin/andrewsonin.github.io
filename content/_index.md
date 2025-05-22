@@ -4,7 +4,7 @@ description: Andrew Sonin — Personal Website
 type: home
 ---
 
-[<img src="{{< avatar >}}" style="max-width:30%;min-width:40px;float:right;margin:10px 0;margin-left:20px;border:3px solid #ccc;" style="margin: 20px 0;" alt="GitHub repo" />](https://github.com/andrewsonin/)
+<a href="{{< github >}}" rel="author me noreferrer external" target="_blank"><img src="{{< avatar >}}" style="max-width:30%;min-width:40px;float:right;margin:10px 0;margin-left:20px;border:3px solid #ccc" style="margin:20px 0" alt="GitHub repo"></a>
 
 # Welcome
 

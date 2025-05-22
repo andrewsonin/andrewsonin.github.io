@@ -33,13 +33,17 @@ url = "index.xml"
 
 [params]
 description = "Personal website of Andrew Sonin"
-footer = "&copy; Andrew Sonin 2025 -- {Year} | [Telegram](https://t.me/sonin) | [GitHub](https://github.com/andrewsonin) | [LinkedIn](https://www.linkedin.com/in/andrewsonin)"
+footer = '<address style="font-style: normal;">&copy; Andrew Sonin 2025 — {Year} | <a href="https://t.me/sonin" rel="author me noreferrer external" target="_blank">Telegram</a> | <a href="https://github.com/andrewsonin" rel="author me noreferrer external" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/andrewsonin" rel="author me noreferrer external" target="_blank">LinkedIn</a> | <a href="mailto:sonin.cel@gmail.com" rel="author me nofollow">E-mail</a></address>'
 mainSections = ["blog"]
 [params.urls]
 gravatar = "https://gravatar.com/avatar/5838c16fa65bbc16b5eedc94e9369d7d?s=800"
 github = "https://github.com/andrewsonin"
 [params.staticPaths]
 avatar = "avatar.jpg"
+[params.authors]
+[params.authors.default]
+name = "Andrew Sonin"
+mail = "sonin.cel@gmail.com"
 
 [markup.highlight]
 codeFences = false

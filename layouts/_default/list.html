@@ -14,7 +14,8 @@
     {{ if not (eq .Params.type "alias") }}
     <li>
         <div>
-            <span class="date">{{ .Date.Format "2006-01-02" }}</span>
+            {{ $datetime := .Date.Format "2006-01-02" }}
+            <time datetime="{{ $datetime }}" itemprop="datePublished">{{ $datetime }}</time>
             <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
         </div>
         {{ with .Params.description }}

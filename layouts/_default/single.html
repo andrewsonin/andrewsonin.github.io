@@ -25,4 +25,25 @@
     {{ .Content }}
 </main>
 
+{{ if or (.Params.categories) (.Params.tags) }}
+<hr/>
+<h2>Taxonomy</h2>
+See related articles on the following topics:
+{{ end }}
+{{ with .Params.categories }}
+<h3>Categories</h3>
+{{ range $index, $cat := . }}
+<li><a href="{{ "categories/" | relURL }}{{ $cat | urlize }}" rel="tag">{{ $cat }}</a></li>
+{{ end }}
+{{ end }}
+
+{{ with .Params.tags }}
+<h3>Tags</h3>
+<p>
+    {{ range $index, $tag := . }}
+    <li><a href="{{ "tags/" | relURL }}{{ $tag | urlize }}" rel="tag">{{ $tag }}</a></li>
+    {{ end }}
+</p>
+{{ end }}
+
 {{ partial "footer.html" . }}

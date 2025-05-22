@@ -13,8 +13,13 @@
     {{ range (where $pages "Section" "!=" "") }}
     {{ if not (eq .Params.type "alias") }}
     <li>
-        <span class="date">{{ .Date.Format "2006-01-02" }}</span>
-        <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+        <div>
+            <span class="date">{{ .Date.Format "2006-01-02" }}</span>
+            <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+        </div>
+        {{ with .Params.description }}
+        <span style="font-style: italic;">{{ . }}</span>
+        {{ end }}
     </li>
     {{ end }}
     {{ end }}

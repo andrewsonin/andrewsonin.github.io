@@ -1,0 +1,15 @@
+{{ partial "header.html" . }}
+<div class="article-meta">
+    <h1><span class="title">{{ .Title | markdownify }}</span></h1>
+    {{ $author := partial "get-author.html" . }}
+    <address class="h2" style="font-style: normal;">
+        <a href="mailto:{{ $author.mail }}" class="author" rel="author nofollow">{{ $author.name }}</a>
+    </address>
+    <time class="h2" datetime="{{ .Date.Format "2006-01-02" }}" itemprop="datePublished">{{ .Date.Format "2006/01/02" }}</time>
+</div>
+
+<main>
+    {{ .Content }}
+</main>
+
+{{ partial "footer.html" . }}

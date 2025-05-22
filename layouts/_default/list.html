@@ -12,15 +12,22 @@
     {{ if .IsHome }}{{ $pages = .Site.RegularPages }}{{ end }}
     {{ range (where $pages "Section" "!=" "") }}
     {{ if not (eq .Params.type "alias") }}
-    <li>
+    <li style="font-size: 1.2em;">
         <div>
             {{ $datetime := .Date.Format "2006-01-02" }}
-            <time datetime="{{ $datetime }}" itemprop="datePublished">{{ $datetime }}</time>
-            <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+            <b><a href="{{ .RelPermalink }}" >{{ .Title | markdownify }}</a></b>
         </div>
         {{ with .Params.description }}
-        <span style="font-style: italic;">{{ . }}</span>
+        <div><span style="font-style: italic; font-size: 0.9em;">{{ . }}</span></div>
         {{ end }}
+        {{ $author := partial "get-author.html" . }}
+        <span style="font-size: 0.8em;">
+            <address style="font-style: normal; display: inline;">
+                <a href="mailto:{{ $author.mail }}" class="list-author" rel="author nofollow">{{ $author.name }}</a>
+            </address>
+            <span>&nbsp;published on</span>
+            <time datetime="{{ $datetime }}" itemprop="datePublished">{{ $datetime }}</time>
+        </span>
     </li>
     {{ end }}
     {{ end }}

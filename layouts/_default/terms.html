@@ -1,0 +1,13 @@
+{{ partial "header.html" . }}
+
+<h1>{{ .Title }}</h1>
+
+<ul class="terms">
+    {{ range sort .Pages "Title" }}
+    <li>
+        <a href="{{ .RelPermalink }}" rel="tag">{{ .Title }}</a> ({{ len .Pages }})
+    </li>
+    {{ end }}
+</ul>
+
+{{ partial "footer.html" . }}

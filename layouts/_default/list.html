@@ -13,7 +13,6 @@
     {{ range (where $pages "Section" "!=" "") }}
     <li style="font-size: 1.2em;">
         <div>
-            {{ $datetime := .Date.Format "2006-01-02" }}
             <b><a href="{{ .RelPermalink }}" target="_blank">{{ .Title | markdownify }}</a></b>
         </div>
         {{ with .Params.description }}
@@ -21,11 +20,7 @@
         {{ end }}
         {{ $author := partial "get-author.html" . }}
         <span style="font-size: 0.8em;">
-            <address style="font-style: normal; display: inline;">
-                <a href="mailto:{{ $author.mail }}" class="list-author" rel="author nofollow">{{ $author.name }}</a>
-            </address>
-            <span>&nbsp;published on</span>
-            <time datetime="{{ $datetime }}" itemprop="datePublished">{{ $datetime }}</time>
+            Published <time datetime="{{ .Date.Format "2006-01-02" }}" itemprop="datePublished">{{ .Date.Format "2 Jan 2006" }}</time>
         </span>
     </li>
     {{ end }}

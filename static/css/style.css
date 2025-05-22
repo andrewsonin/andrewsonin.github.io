@@ -74,19 +74,3 @@ thead, tfoot, tr:nth-child(even) { background: #e0e0e0; }
     color: #ccc;
   }
 }
-
-.list-author {
-  color: inherit;          /* Inherit parent's color */
-  font-style: normal;      /* Just in case */
-}
-
-.list-author:hover {
-  text-decoration: none;   /* Disable underline */
-  color: #555;
-}
-
-@media (prefers-color-scheme: dark) {
-  .list-author:hover {
-    color: #ccc;
-  }
-}

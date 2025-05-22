@@ -15,7 +15,7 @@
     <li style="font-size: 1.2em;">
         <div>
             {{ $datetime := .Date.Format "2006-01-02" }}
-            <b><a href="{{ .RelPermalink }}" >{{ .Title | markdownify }}</a></b>
+            <b><a href="{{ .RelPermalink }}" target="_blank">{{ .Title | markdownify }}</a></b>
         </div>
         {{ with .Params.description }}
         <div><span style="font-style: italic; font-size: 0.9em;">{{ . }}</span></div>

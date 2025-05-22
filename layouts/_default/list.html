@@ -11,7 +11,6 @@
     {{ $pages := .Pages }}
     {{ if .IsHome }}{{ $pages = .Site.RegularPages }}{{ end }}
     {{ range (where $pages "Section" "!=" "") }}
-    {{ if not (eq .Params.type "alias") }}
     <li style="font-size: 1.2em;">
         <div>
             {{ $datetime := .Date.Format "2006-01-02" }}
@@ -29,7 +28,6 @@
             <time datetime="{{ $datetime }}" itemprop="datePublished">{{ $datetime }}</time>
         </span>
     </li>
-    {{ end }}
     {{ end }}
 </ul>
 {{ end }}

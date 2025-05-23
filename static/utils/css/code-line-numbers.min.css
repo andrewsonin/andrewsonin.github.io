@@ -1,2 +1,0 @@
-span[data-line-number]:before{content:attr(data-line-number);color:#ccc;border-right:1px solid;margin-right:1em;padding-right:.5em;display:inline-block}
-/*# sourceMappingURL=code-line-numbers.min.css.map */

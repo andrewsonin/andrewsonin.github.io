@@ -1,1 +1,0 @@
-{"version":3,"mappings":"AAAA,8JAUA","sources":["key-buttons.css"],"sourcesContent":["kbd {\n  border: 2px solid #ccc;\n  box-shadow: 2px 2px #999;\n  display: inline-block;\n  padding: 0 5px;\n  border-radius: 0.25em;\n  min-width: 1.5em;\n  text-align: center;\n  margin-right: .15em;\n}\nkbd:hover {\n  position: relative;\n  top: 2px;\n  left: 2px;\n}\n"],"names":[]}

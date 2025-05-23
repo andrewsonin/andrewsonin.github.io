@@ -54,6 +54,8 @@ jobs:
         run: python scripts/ci/01-download-gravatar.py --static static/ --hugo hugo.toml
       - name: Generate Article Previews
         run: python scripts/ci/02-generate-article-previews.py --content content/ --static static/ --logo static/favicon.png --hugo hugo.toml
+      - name: Remove non-minimized files
+        run: find static -type f -name '*.css' ! -name '*.min.css' -exec rm {} +
       - name: Install Hugo CLI
         run: |
           wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \

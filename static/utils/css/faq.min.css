@@ -1,2 +1,0 @@
-.faq-button{cursor:pointer;float:right;margin-left:1em}.faq-list{&>li{border:1px solid #eee;padding:.5em;&>:first-child{cursor:pointer;background:#fafafa;margin:-.5em;padding:.5em;display:block}}&>:not(.faq-clicked)>*{display:none}& .anchor{&:not(:hover>*){display:none}&>a:before{content:"#"}}}
-/*# sourceMappingURL=faq.min.css.map */

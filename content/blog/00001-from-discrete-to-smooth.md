@@ -21,7 +21,9 @@ $$
 
 where \( f(x) \) is the objective function and \( \mathcal{C} \) is the feasible region.
 
-However, the path from problem formulation to solvable optimization task is rarely straightforward. This post outlines a pragmatic strategy: **reduce complexity step by step, ideally toward smooth and convex formulations**.
+In practice, especially in fields like high-frequency trading and quantitative finance, it's common to see practitioners get stuck in discrete formulations of optimization problems. While discrete methods have their place, there are many cases where insisting on a discrete approach leads to significant inefficiencies — both computationally and financially. I've often observed situations where a problem that naturally lends itself to smooth optimization techniques is instead attacked with brute-force grid search or other combinatorial methods.
+
+This article is a response to that pattern — it’s a guide to recognizing when and how a discrete problem can (and should) be relaxed into a smooth one, saving time, money, and complexity. It outlines a pragmatic strategy: **reduce complexity step by step, ideally toward smooth and convex formulations**.
 
 ---
 
@@ -62,7 +64,7 @@ If you can reformulate the problem so that:
 
 then **convex optimization solvers** will likely give reliable global minima efficiently.
 
-> 🧠 You can verify convexity by checking that the Hessian is positive semi-definite, or by using composition rules (see [Boyd & Vandenberghe, Ch. 3](https://web.stanford.edu/~boyd/cvxbook/)).
+> 🧠 You can verify convexity by checking that the Hessian is positive semi-definite, or by using composition rules (see <a href="https://web.stanford.edu/~boyd/cvxbook/" target="_blank" rel="noreferrer external">Boyd & Vandenberghe</a>).
 
 If convexity cannot be guaranteed — say, due to regularization or relaxations — the solver may fail or return local minima.
 
@@ -74,6 +76,7 @@ If convexity fails, keep things **quadratic and smooth**. That is:
 
 - Use only terms like \( x^2 \), \( x_i x_j \), and linear terms in the objective.
 - Stick to **linear** equality and inequality constraints.
+- Do not use modulus in linear terms.
 
 Then solve using the **method of Lagrange multipliers**. Construct:
 
@@ -103,13 +106,18 @@ If all else fails and the objective is **non-convex but differentiable**, use **
 - **Regularization** to encourage binary solutions in relaxed problems:  
   Add a term like \( \lambda \sum_i x_i(1 - x_i) \), which is minimized at \( x_i \in \{0,1\} \).
 
-> 📘 See [Nocedal & Wright, Numerical Optimization](https://link.springer.com/book/10.1007/978-0-387-40065-5) for more on gradient methods and constrained optimization.
-
 ---
 
 ## 3. Illustrative Example: Relaxing a Binary Problem
 
-Suppose we want to solve:
+Suppose we are tasked with choosing a subset of assets to include in a portfolio. Each asset either is included (1) or not (0). The goal is to minimize risk while satisfying certain constraints on return, sector exposure, or liquidity. Such selection naturally leads to a binary optimization problem. Let’s formalize a simplified version of this situation:
+
+Given:
+- A cost vector \( c \in \mathbb{R}^n \)
+- A constraint matrix \( A \in \mathbb{R}^{m \times n} \)
+- A right-hand-side vector \( b \in \mathbb{R}^m \)
+
+The problem is:
 
 $$
 \min_{x \in \{0,1\}^n} \; c^T x \quad \text{s.t.} \quad Ax = b
@@ -126,22 +134,24 @@ $$
 \min_{x \in [0,1]^n} \; c^T x + \lambda \sum_{i=1}^n x_i(1 - x_i) \quad \text{s.t.} \quad Ax = b
 $$
 
+Here, \(\lambda>0\) is a regularization parameter — not a Lagrange multiplier — that balances the original objective and the penalty term encouraging binary solutions.
+
 This objective is differentiable but not convex due to the \( x_i(1 - x_i) \) terms. You can now:
 
-- Substitute one variable to handle \( Ax = b \).
+- Eliminate as many variables as the number of linearly independent equality constraints in \(Ax=b\). This reduces a constrained optimization problem to a lower-dimensional unconstrained problem.
 - Apply projected gradient descent or Adam optimizer.
 - Use clipping to enforce \( x_i \in [0,1] \).
 
 ---
 
-## 4. Summary: A Decision Tree for Optimization
+## 4. Summary: A Decision Table for Optimization
 
 | Problem Type         | Feasibility   | Theory       | Recommended Method        |
 |----------------------|---------------|--------------|---------------------------|
 | Discrete / Integer   | Very difficult| Weak         | Avoid or relax            |
 | Smooth, non-convex   | Moderate      | Limited      | Gradient descent (Adam)   |
-| Smooth & convex      | Easy          | Strong       | Convex solvers / CVXPY    |
 | Quadratic + linear   | Solvable      | Strong       | Lagrange multipliers      |
+| Smooth & convex      | Easy          | Strong       | Convex solvers / CVXPY    |
 
 > ✅ **Golden Rule**: When in doubt, reduce your problem to something **smooth, quadratic, and convex** — in that order.
 
@@ -149,5 +159,4 @@ This objective is differentiable but not convex due to the \( x_i(1 - x_i) \) te
 
 ## References
 
-- Boyd, S., & Vandenberghe, L. (2004). *Convex Optimization*. Cambridge University Press. [Free online](https://web.stanford.edu/~boyd/cvxbook/)
-- Nocedal, J., & Wright, S. (2006). *Numerical Optimization*. Springer.
+- Boyd, S., & Vandenberghe, L. (2004). *Convex Optimization*. Cambridge University Press. <a href="https://web.stanford.edu/~boyd/cvxbook/" target="_blank" rel="noreferrer external">Fee online</a>

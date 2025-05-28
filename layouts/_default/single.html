@@ -1,6 +1,9 @@
 {{ partial "header.html" . }}
 <div class="article-meta">
     <h1><span class="title">{{ .Title | markdownify }}</span></h1>
+    {{ with .Params.description }}
+    <div><span style="font-style: italic; font-size: 1.2em;">{{ . }}</span></div>
+    {{ end }}
     {{ $author := partial "get-author.html" . }}
     <address class="h2" style="font-style: normal;">
         <a href="mailto:{{ $author.mail }}" class="author" rel="author nofollow">{{ $author.name }}</a>

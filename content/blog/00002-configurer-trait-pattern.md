@@ -11,7 +11,7 @@ tags:
 slug: configurer-trait-pattern
 ---
 
-In this article, I’d like to discuss a design pattern I widely use in my Rust projects — one that I feel is underrepresented in the public discourse, despite the fact that many experienced developers independently discover it as a natural solution. I call it the `Configurer Trait Pattern`.
+In this article, I’d like to discuss a design pattern I widely use in my `Rust` projects — one that I feel is underrepresented in the public discourse, despite the fact that many experienced developers independently discover it as a natural solution. I call it the **Configurer Trait Pattern**.
 
 This pattern is especially useful for **app- and component-wide compile-time configuration**, where multiple type parameters must be managed in a scalable and ergonomic way.
 
@@ -19,7 +19,7 @@ This pattern is especially useful for **app- and component-wide compile-time con
 
 # The problem it solves
 
-The pattern addresses the **explosion of `Generic` parameters** in public interfaces. When code is private to a crate (i.e., all usage is tightly controlled), this isn’t much of an issue. But exposing types like this:
+The pattern addresses the **explosion of generic parameters** in public interfaces. When code is private to a crate (i.e., all usage is tightly controlled), this isn’t much of an issue. But exposing types like this:
 
 ```rust
 struct SomeType<T, M, Payload: Payload, HashType, UserType>
@@ -67,7 +67,7 @@ In some cases, deriving standard traits like `Debug`, `Clone`, or `Copy` on type
 
 ## 2. Trait Solver False-Negative Conflicts
 
-Rust’s trait solver currently produces false-negative conflicts for patterns like the following:
+`Rust`’s trait solver currently produces false-negative conflicts for patterns like the following:
 
 ```rust
 struct Foo<C: Configurer>(C::Bar);
@@ -127,9 +127,9 @@ It’s clunky, but effective.
 
 ## 3. GAT Invariance and Lifetime Variance
 
-Associated traits in Rust are *always* invariant over their parameters — which becomes problematic in certain advanced use cases.
+Associated traits in `Rust` are *always* invariant over their parameters — which becomes problematic in certain advanced use cases.
 
-For example, consider a library for **concurrent object interning**. It defines a type like this:
+For example, consider a library for *concurrent object interning*. It defines a type like this:
 
 ```rust
 /// The result of internalization.
@@ -156,18 +156,20 @@ pub unsafe trait InternerProvider<'a, C: Configurer>: Copy
 
 You may want to support two cases:
 
-1. One `interner` per `Id<C>` — `InternerProvider::interner` returns a static reference, and `Configurer::InternerProvider` is a zero-sized type.
-2. Multiple interners per `Id<C>` — here, `Configurer::InternerProvider` becomes a reference to a specific interner, and the method returns `self`.
+1. One interner per `Id<C>` — `InternerProvider::interner` returns a static reference, and `Configurer::InternerProvider` is a zero-sized type.
+2. Multiple interners per `Id<C>` — here, `Configurer::InternerProvider` becomes a reference to a specific interner, and the method simply returns `self`.
 
 The second case *requires* that `Id<'a, C>` be **covariant** over `'a`. Otherwise, we will get errors on the user side, which will reduce the usability of the library to zero. For example, when the user wants to use an `Id<'a, C>` with an extended lifetime `'a` in a context that assumes `Id<'b, C>`s with a shorter, but nested lifetime `'b` such that `'a: 'b`, the compiler will not let him do this.
 
-But associated types in GATs are invariant by default — making the type essentially unusable.
+This is because associated types in GAT are **invariant** by default, and there is currently no way to customize this.
+
+>🧠 For more information on subtyping and variance, see <a href="https://doc.rust-lang.org/nomicon/subtyping.html" target="_blank" rel="noreferrer external">The Rustonomicon</a>.
 
 ---
 
 ### The Workaround: "Private" Generic Parameters with Derived Defaults
 
-The solution lies in adding **“private” generic parameters** with default values derived from `C: Configurer`:
+The solution lies in adding *“private” generic parameters* with default values derived from `C: Configurer`:
 
 ```rust
 /// The result of internalization.
@@ -239,6 +241,6 @@ mod tests {
 
 # Conclusion
 
-The `Configurer Trait Pattern` is a flexible and robust solution for managing compile-time configurations in Rust — especially in public APIs. It hides complexity, reduces breakage, and enables expressive compile-time composition. However, it does require some cleverness to work around current limitations in the Rust compiler.
+The **Configurer Trait Pattern** is a flexible and robust solution for managing compile-time configurations in `Rust` — especially in public APIs. It hides complexity, reduces breakage, and enables expressive compile-time composition. However, it does require some cleverness to work around current limitations in the `Rust` compiler.
 
 If you're building large or flexible libraries, I highly recommend considering this pattern in your design.

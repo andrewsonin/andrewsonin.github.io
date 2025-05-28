@@ -53,6 +53,8 @@ codeFences = false
 
 [markup.goldmark.renderer]
 unsafe = true
+[markup.goldmark.parser]
+autoHeadingID = true
 
 [markup.goldmark.extensions.passthrough]
 enable = true

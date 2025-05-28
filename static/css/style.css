@@ -74,3 +74,21 @@ thead, tfoot, tr:nth-child(even) { background: #e0e0e0; }
     color: #ccc;
   }
 }
+
+.heading-anchor {
+  margin-left: 0.5em;
+  opacity: 0;
+  text-decoration: none;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+h1:hover .heading-anchor,
+h2:hover .heading-anchor,
+h3:hover .heading-anchor,
+h4:hover .heading-anchor,
+h5:hover .heading-anchor,
+h6:hover .heading-anchor {
+  opacity: 1;
+}

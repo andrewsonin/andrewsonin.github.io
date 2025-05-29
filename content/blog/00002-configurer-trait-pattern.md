@@ -112,13 +112,13 @@ trait Configurer {
 
 trait Baz {}
 
-struct DeriveWrapper<C: Configurer<Bar = Bar>, Bar>(Foo<C>);
+struct DeriveWrapper<C: Configurer<Bar=Bar>, Bar>(Foo<C>);
 
-impl<C: Configurer<Bar = Bar>, Bar> Baz for Foo<C> where DeriveWrapper<C, Bar>: Baz {}
+impl<C: Configurer<Bar=Bar>, Bar> Baz for Foo<C> where DeriveWrapper<C, Bar>: Baz {}
 
-impl<C: Configurer<Bar = i8>> Baz for DeriveWrapper<C, i8> {}
+impl<C: Configurer<Bar=i8>> Baz for DeriveWrapper<C, i8> {}
 
-impl<C: Configurer<Bar = u8>> Baz for DeriveWrapper<C, u8> {}
+impl<C: Configurer<Bar=u8>> Baz for DeriveWrapper<C, u8> {}
 ```
 
 It’s clunky, but effective.
@@ -147,9 +147,9 @@ pub trait Configurer: 'static + Sized {
     type InternerProvider<'a>: InternerProvider<'a, Self>;
 }
 
-pub unsafe trait InternerProvider<'a, C: Configurer>: Copy
+pub trait InternerProvider<'a, C: Configurer>: Copy
 {
-    type Interner: Interner<C>;
+    type Interner;
     fn interner(self) -> &'a Self::Interner;
 }
 ```
@@ -221,13 +221,13 @@ mod tests {
     }
 
     #[derive(Copy, Clone)]
-    struct DummyInternerProvider<'a>(&'a DummyInterner);
+    struct DummyInternerProvider;
 
-    unsafe impl<'a, C: Configurer> InternerProvider<'a, C> for DummyInternerProvider<'a> {
-        type Interner = DummyInterner;
+    impl<'a, C: Configurer> InternerProvider<'a, C> for DummyInternerProvider {
+        type Interner = ();
 
         fn interner(self) -> &'a Self::Interner {
-            unimplemented!()
+            &()
         }
     }
 

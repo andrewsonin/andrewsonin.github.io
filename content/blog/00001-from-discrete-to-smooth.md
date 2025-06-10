@@ -81,7 +81,7 @@ If convexity fails, keep things **quadratic and smooth**. That is:
 Then solve using the **method of Lagrange multipliers**. Construct:
 
 $$
-\mathcal{L}(x, \lambda) = f(x) + \lambda^T (Ax - b)
+\mathcal{L}(x, \lambda) = f(x) + \lambda^\top (Ax - b)
 $$
 
 Solving the KKT (Karush-Kuhn-Tucker) conditions gives:
@@ -120,7 +120,7 @@ Given:
 The problem is:
 
 $$
-\min_{x \in \{0,1\}^n} \; c^T x \quad \text{s.t.} \quad Ax = b
+\min_{x \in \{0,1\}^n} \; c^\top x \quad \text{s.t.} \quad Ax = b
 $$
 
 This is discrete and hard. Let’s relax it:
@@ -131,7 +131,7 @@ This is discrete and hard. Let’s relax it:
 New problem:
 
 $$
-\min_{x \in [0,1]^n} \; c^T x + \lambda \sum_{i=1}^n x_i(1 - x_i) \quad \text{s.t.} \quad Ax = b
+\min_{x \in [0,1]^n} \; c^\top x + \lambda \sum_{i=1}^n x_i(1 - x_i) \quad \text{s.t.} \quad Ax = b
 $$
 
 Here, \(\lambda>0\) is a regularization parameter — not a Lagrange multiplier — that balances the original objective and the penalty term encouraging binary solutions.
